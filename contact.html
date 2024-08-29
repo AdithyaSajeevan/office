@@ -1,0 +1,307 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="OneTeam Solution - Software Training Institutes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  <title>OneTeam Solution - Software Training Institutes</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'miniapp/img/core-img/favicon.ico' %}">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="{% static 'miniapp/style.css' %}">
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="wrapper">
+      <div class="cssload-loader"></div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area">
+    <!-- Main Header Start -->
+    <div class="main-header-area">
+      <div class="classy-nav-container breakpoint-off">
+        <!-- Classy Menu -->
+        <nav class="classy-navbar justify-content-between" id="monaNav">
+          <!-- Logo -->
+          <a href="{% url 'index' %}">
+            <img style="height: 210px;padding-top: 18%;width: 175px;" class="nav-brand" 
+              src="{% static 'miniapp/img/core-img/oneteam3.png' %}" alt="">
+          </a>
+
+          <!-- Navbar Toggler -->
+          <div class="classy-navbar-toggler">
+            <span class="navbarToggler"><span></span><span></span><span></span></span>
+          </div>
+
+          <!-- Menu -->
+          <div class="classy-menu">
+            <!-- Menu Close Button -->
+            <div class="classycloseIcon">
+              <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+            </div>
+
+            <!-- Nav Start -->
+            <div class="classynav">
+              <ul id="nav">
+                <li><a href="{% url 'index'%}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'team' %}">Team</a></li>
+                <li class="current-item"><a href="{% url 'contact' %}">Contact</a></li>
+              </ul>
+
+              <!-- Search Icon -->
+              <div class="search-icon" data-toggle="modal" data-target="#searchModal">
+                <i class="icon_search"></i>
+              </div>
+            </div>
+            <!-- Nav End -->
+
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header> 
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Top Search Area Start ***** -->
+  <div class="top-search-area">
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <!-- Close Button -->
+            <button type="button" class="btn close-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>
+            <!-- Form -->
+            <form action="{% url 'index'%}" method="post">
+              <input type="search" name="top-search-bar" class="form-control" placeholder="Search and hit enter...">
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Top Search Area End ***** -->
+
+    <!-- Single Welcome Slide -->
+    <div class="single-welcome-slide">
+      <!-- Background Curve -->
+      <div class="bg-curve">
+        <img style="height: 175px;width: 100%;" src="{% static 'miniapp/img/core-img/curve.png' %}" alt="">
+      </div>
+
+      <section class="mona-contact-area section-padding-80-0">
+        <div class="container">
+          <div class="row align-items-center justify-content-between">
+    
+            <!-- Google Maps -->
+            <div class="col-12 col-lg-6 col-xl-6" style="padding-top:10%;">
+              <div class="google-maps mb-80">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.025792117235!2d75.781324175953!3d11.259512850095525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65b81a89bf5c3%3A0x57e54f0de54f9b60!2sOne%20Team%20Solutions!5e0!3m2!1sen!2sin!4v1701533218132!5m2!1sen!2sin" 
+                  width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+              </div>
+            </div>
+    
+            <!-- Contact Form -->
+            <div class="col-12 col-lg-6 col-xl-5">
+              <div class="mona-contact-form mb-80">
+                <div class="contact-heading">
+                  <h2>Contact Us</h2>
+                  <p>Lorem ipsum dolor sit amet, consetetur sadipscing esed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
+                </div>
+    
+                {% if form.errors %}
+                <div class="alert-danger">{{  forms.errors }}</div>
+                {% endif %}
+                <div style="padding: 1.5% 15% 0 15%;">
+                    <form id="myForm" action="{% url 'contact' %}" 
+                      method="post" class="form-group">
+                    {% csrf_token %}
+
+                        <div class="form-group">
+                            {{form.as_p}}
+                        </div>
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                    </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Request Submitted
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Single Contact Card -->
+      <div class="col-12 col-lg-4">
+        <div class="single-contact-card mb-80">
+          <h2>Reception</h2>
+          <h6>40 Baria Sreet 133/2 NewYork City, US <br>
+            info@colorlib.com <br>
+            +01-3-8888-6868</h6>
+        </div>
+      </div>
+
+      <!-- Single Contact Card -->
+      <div class="col-12 col-lg-4">
+        <div class="single-contact-card mb-80">
+          <h2>Booking</h2>
+          <h6>40 Baria Sreet 133/2 NewYork City, US <br>
+            info@colorlib.com <br>
+            +01-3-8888-6868</h6>
+        </div>
+      </div>
+
+      <!-- Single Contact Card -->
+      <div class="col-12 col-lg-4">
+        <div class="single-contact-card mb-80">
+          <h2>President</h2>
+          <h6>40 Baria Sreet 133/2 NewYork City, US <br>
+            info@colorlib.com <br>
+            +01-3-8888-6868</h6>
+        </div>
+      </div>
+    </div>
+
+  <!-- ***** Contact Area Start ***** -->
+
+  <!-- ***** Contact Area End ***** -->
+
+  <!-- ***** Footer Area Start ***** -->
+  <footer class="footer-area section-padding-80-0">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+          <div class="single-footer-widget mb-60">
+            <!-- Logo -->
+            <a href="#" class="d-block mb-4">
+              <img style="height: 210px;width: 175px;" class="nav-brand" 
+              src="{% static 'miniapp/img/core-img/oneteam3.png' %}" alt="">
+            </a>
+            <p>Integer vehicula mauris libero, at molestie eros imperdiet sit amet. Suspendisse mattis ante sit amet ante.</p>
+            <div class="copywrite-text">
+              <p>&copy; 
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with 
+    <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+          <div class="single-footer-widget mb-60">
+            <!-- Widget Title -->
+            <h4 class="widget-title">Our Link</h4>
+
+            <!-- Catagories Nav -->
+            <nav>
+              <ul class="our-link">
+                <li><a href="#">New Faces</a></li>
+                <li><a href="#">Model Of the Week</a></li>
+                <li><a href="#">Classic Women</a></li>
+                <li><a href="#">Privacy Terms</a></li>
+                <li><a href="#">Classic Men</a></li>
+                <li><a href="#">Conditions</a></li>
+                <li><a href="#">Hair & Styles</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-lg-4 col-xl-3">
+          <div class="single-footer-widget mb-60">
+            <!-- Widget Title -->
+            <h4 class="widget-title">Contact</h4>
+            <!-- Footer Content -->
+            <div class="footer-content mb-30">
+              <h4>+01-3-8888-6868</h4>
+              <h6>40 Baria Sreet 133/2 NewYork City</h6>
+            </div>
+            <!-- Social Info -->
+            <div class="footer-social-info">
+              <a href="https://www.facebook.com/" class="facebook" data-toggle="tooltip" target="_blank" data-placement="top" title="Facebook"><i
+                  class="fa fa-facebook"></i></a>
+              <a href="https://about.twitter.com/en" class="twitter" data-toggle="tooltip" target="_blank" data-placement="top" title="Twitter"><i
+                  class="fa fa-twitter"></i></a>
+              <a href="https://in.pinterest.com/" class="pinterest" data-toggle="tooltip" target="_blank" data-placement="top" title="Pinterest"><i
+                  class="fa fa-pinterest"></i></a>
+              <a href="https://www.instagram.com/" class="instagram" data-toggle="tooltip" target="_blank" data-placement="top" title="Instagram"><i
+                  class="fa fa-instagram"></i></a>
+              <a href="https://www.youtube.com/" class="youtube" data-toggle="tooltip" target="_blank" data-placement="top" title="YouTube"><i
+                  class="fa fa-youtube-play"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+  <!-- ***** Footer Area End ***** -->
+
+  <!-- ******* All JS ******* -->
+  <!-- jQuery js -->
+  <script src="{% static 'miniapp/js/jquery.min.js' %}"></script>
+  <!-- Popper js -->
+  <script src="{% static 'miniapp/js/popper.min.js' %}"></script>
+  <!-- Bootstrap js -->
+  <script src="{% static 'miniapp/js/bootstrap.min.js' %}"></script>
+  <!-- All js -->
+  <script src="{% static 'miniapp/js/mona.bundle.js' %}"></script>
+  <!-- Active js -->
+  <script src="{% static 'miniapp/js/default-assets/active.js' %}"></script>
+
+  <script>
+    $(document).ready(function(){
+        $('#myForm').on('submit', function(e){
+            e.preventDefault();
+            // Your form submission logic here
+            $('#myModal').modal('show');
+            $('#name').val('');
+            $('#email').val('');
+            $('#mobile').val('');
+        });
+    });
+  </script>
+
+</body>
+
+</html>

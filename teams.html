@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="OneTeam Solution - Software Training Institutes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  <title>OneTeam Solution - Software Training Institutes</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'miniapp/img/core-img/favicon.ico' %}">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="{% static 'miniapp/style.css' %}">
+
+  <!-- font awessome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="wrapper">
+      <div class="cssload-loader"></div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area">
+    <!-- Main Header Start -->
+    <div class="main-header-area">
+      <div class="classy-nav-container breakpoint-off">
+        <!-- Classy Menu -->
+        <nav class="classy-navbar justify-content-between" id="monaNav">
+          <!-- Logo -->
+          <a href="{% url 'index' %}">
+            <img style="height: 210px;padding-top: 18%;width: 175px;" class="nav-brand" 
+              src="{% static 'miniapp/img/core-img/oneteam3.png' %}" alt="">
+          </a>
+
+          <!-- Navbar Toggler -->
+          <div class="classy-navbar-toggler">
+            <span class="navbarToggler"><span></span><span></span><span></span></span>
+          </div>
+
+          <!-- Menu -->
+          <div class="classy-menu">
+            <!-- Menu Close Button -->
+            <div class="classycloseIcon">
+              <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+            </div>
+
+            <!-- Nav Start -->
+            <div class="classynav">
+              <ul id="nav">
+                <li><a href="{% url 'index'%}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li class="current-item"><a href="{% url 'team' %}">Team</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+              </ul>
+
+              <!-- Search Icon -->
+              <div class="search-icon">
+                <form action="{% url 'team' %}" method="get">
+                  <div class="search-icon">
+                    <input type="text" class="form-control" name="q" value="{{request.GET.q}}" 
+                      placeholder="Search and hit enter...">
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- Nav End -->
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** Top Search Area Start ***** -->
+  <!-- not using now -->
+  <div class="top-search-area">
+    <!-- Search Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <!-- Close Button -->
+            <button type="button" class="btn close-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>
+            <!-- Form -->
+            <form action="{% url 'index'%}" method="post">
+              <input type="text" class="form-control" 
+                name="q" value="{{request.GET.q}}" placeholder="Search and hit enter...">
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Top Search Area End ***** -->
+
+  <!-- ***** Welcome Area Start ***** -->
+  <section class="welcome-area">
+    <!-- Welcome Slides -->
+    <div class="welcome-slides owl-carousel">
+
+      <!-- Single Welcome Slide -->
+      <div class="single-welcome-slide">
+        <!-- Background Curve -->
+        <div class="bg-curve">
+          <img style="height: 200px;" src="{% static 'miniapp/img/core-img/curve.png'%}" alt="">
+        </div>
+
+        <div style="padding-top: 18%;" class="mona-tab-content">
+
+          <div style="padding: 10px 0 20px 16px;">
+            <button style="font-size: 18px;font-weight: 600;" type="button" class="btn btn-primary">
+              <a style="display: flex;gap: 7px;align-items: center;justify-content: center;color: white;"
+                href="{% url 'addmember' %}">
+                <i style="font-size: 20px; color: white;" class="fa fa-regular fa-user"></i>Add Member
+              </a>
+            </button>
+          </div>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-12">
+                <div class="tab-content" id="mona_modelTabContent">
+                  <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab1">
+                    <div class="row flex-wrap">
+                      {% if datas %}
+                      {% for data in datas %}
+                      <!-- Single Model Item -->
+                      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl">
+                        <div class="single-model-item mb-50">
+                          <div class="model-thumbnail">
+                            <div class="single-project-area">
+                              {% if data.image %}
+                              <img style="height: 257.5px;border-radius: 3%;" class="first-thumbnail"
+                                src="{{data.image.url}}" alt="">
+                              {% else %}
+                              <img style="border-radius: 3%;" class="first-thumbnail"
+                                src="{% static 'miniapp/img/bg-img/31.jpg' %}" alt="">
+                              {% endif%}
+                              <!-- Hover Content -->
+                              <div style="border-radius: 3%;" class="hover-content d-flex align-items-center">
+                                <div class="hover-text">
+                                  <h4>{{data.name}}</h4>
+                                  <h6>Role: {{data.role}}</h6>
+                                  <h6>Email: {{data.email}}</h6>
+                                  <h6>Mobile: {{data.mobile}}</h6>
+                                  <div>
+                                    <button type="submit" class="btn btn-primary">
+                                      <a style="color: white;font-weight: 600;font-size: 15px;"
+                                        href="{% url 'edit' data.id %}">Edit</a>
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                      <a style="color: white;font-weight: 600;font-size: 15px;"
+                                        href="{% url 'delete' data.id %}">Delete</a>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="model-info">
+                            <h3>{{data.name}}</h3>
+                            <h6>{{data.role}}</h6>
+                          </div>
+                        </div>
+                      </div>
+                      {% endfor %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-area section-padding-80-0">
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+          <div class="single-footer-widget mb-60">
+            <!-- Logo -->
+            <a href="#" class="d-block mb-4">
+              <img style="height: 210px;width: 175px;" class="nav-brand" 
+              src="{% static 'miniapp/img/core-img/oneteam3.png' %}" alt="">
+            </a>
+            <p>Integer vehicula mauris libero, at molestie eros imperdiet sit amet. Suspendisse mattis ante sit amet
+              ante.</p>
+            <div class="copywrite-text">
+              <p>&copy;
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+                with
+                <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                  target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+          <div class="single-footer-widget mb-60">
+            <!-- Widget Title -->
+            <h4 class="widget-title">Our Link</h4>
+
+            <!-- Catagories Nav -->
+            <nav>
+              <ul class="our-link">
+                <li><a href="#">New Faces</a></li>
+                <li><a href="#">Model Of the Week</a></li>
+                <li><a href="#">Classic Women</a></li>
+                <li><a href="#">Privacy Terms</a></li>
+                <li><a href="#">Classic Men</a></li>
+                <li><a href="#">Conditions</a></li>
+                <li><a href="#">Hair & Styles</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Single Footer Widget -->
+        <div class="col-12 col-lg-4 col-xl-3">
+          <div class="single-footer-widget mb-60">
+            <!-- Widget Title -->
+            <h4 class="widget-title">Contact</h4>
+            <!-- Footer Content -->
+            <div class="footer-content mb-30">
+              <h4>+01-3-8888-6868</h4>
+              <h6>40 Baria Sreet 133/2 NewYork City</h6>
+            </div>
+            <!-- Social Info -->
+            <div class="footer-social-info">
+              <a href="https://www.facebook.com/" class="facebook" data-toggle="tooltip" target="_blank" data-placement="top" title="Facebook"><i
+                  class="fa fa-facebook"></i></a>
+              <a href="https://about.twitter.com/en" class="twitter" data-toggle="tooltip" target="_blank" data-placement="top" title="Twitter"><i
+                  class="fa fa-twitter"></i></a>
+              <a href="https://in.pinterest.com/" class="pinterest" data-toggle="tooltip" target="_blank" data-placement="top" title="Pinterest"><i
+                  class="fa fa-pinterest"></i></a>
+              <a href="https://www.instagram.com/" class="instagram" data-toggle="tooltip" target="_blank" data-placement="top" title="Instagram"><i
+                  class="fa fa-instagram"></i></a>
+              <a href="https://www.youtube.com/" class="youtube" data-toggle="tooltip" target="_blank" data-placement="top" title="YouTube"><i
+                  class="fa fa-youtube-play"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+  <!-- ***** Footer Area End ***** -->
+
+  <!-- ******* All JS ******* -->
+  <!-- jQuery js -->
+  <script src="{% static 'miniapp/js/jquery.min.js' %}"></script>
+  <!-- Popper js -->
+  <script src="{% static 'miniapp/js/popper.min.js' %}"></script>
+  <!-- Bootstrap js -->
+  <script src="{% static 'miniapp/js/bootstrap.min.js' %}"></script>
+  <!-- All js -->
+  <script src="{% static 'miniapp/js/mona.bundle.js' %}"></script>
+  <!-- Active js -->
+  <script src="{% static 'miniapp/js/default-assets/active.js' %}"></script>
+
+</body>
+
+</html>
